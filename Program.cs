@@ -20,7 +20,7 @@ namespace HtmlBuilder
 
             foreach (var people in arrayEmail) 
             {
-                if (people.Value.Contains("script"))
+                if ((people.Value.Contains("script")) || (people.Value.Contains("script")))
                 {
                     continue;
                 }
