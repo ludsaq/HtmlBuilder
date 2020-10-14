@@ -20,7 +20,15 @@ namespace HtmlBuilder
 
             foreach (var people in arrayEmail) 
             {
+                if (people.Value.Contains("script"))
+                {
+                    continue;
+                }
+                else 
+                { 
                 contentHtml.AppendLine("<a href="+ people.Key+">"+ people.Value + "</a>");
+                }
+                
             }
 
             contentHtml.AppendLine("</body>");
