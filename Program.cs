@@ -7,31 +7,36 @@ namespace HtmlBuilder
 {
     class HtmlBuilder 
     {
-        private StringBuilder HeaderHtml = new StringBuilder("<html>< head >< meta charset = "+"UTF-8" + "> </head >", 100);
+        private StringBuilder HeaderHtml = new StringBuilder("<html><head>< meta charset = "+"UTF-8" + "> </head >", 100);
 
-        public HtmlBuilder(Dictionary<string, string> ArrayEmail) 
+        public HtmlBuilder(Dictionary<string, string> arrayEmail) 
         {
-            File.WriteAllText(@"C:\index.html",HeaderHtml.AppendLine(ContentHtml(ArrayEmail).ToString()).ToString());
+            File.WriteAllText(@"C:\test\index.html",HeaderHtml.AppendLine(contentHtml(arrayEmail).ToString()).ToString());
         }
 
-        public StringBuilder ContentHtml(Dictionary<string, string> ArrayEmail) 
+        public StringBuilder contentHtml(Dictionary<string, string> arrayEmail) 
         {
-            StringBuilder ContentHtml = new StringBuilder("<body>",1000);
+            StringBuilder contentHtml = new StringBuilder("<body>",1000);
 
-            foreach (var People in ArrayEmail) 
+            foreach (var people in arrayEmail) 
             {
-                ContentHtml.AppendLine("<a href="+People.Value+">"+People.Key+"</a>");
+                contentHtml.AppendLine("<a href="+ people.Key+">"+ people.Value + "</a>");
             }
 
-            ContentHtml.AppendLine("</body>");
+            contentHtml.AppendLine("</body>");
+            contentHtml.AppendLine("</html>");
 
-            return ContentHtml;
+            return contentHtml;
         }
     }
     class MainLogic
     {
         static void Main(string[] args)
         {
+            Dictionary<String, string> arrayEmail = new Dictionary<string, string>();
+            arrayEmail.Add("Maxim@gmail.com", "Maxim<script>alert('Name!')</script>");
+
+            HtmlBuilder htmlDocument = new HtmlBuilder(arrayEmail);
         }
     }
 }
